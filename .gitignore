@@ -5,3 +5,7 @@ npm-debug.log
 *.class
 *.jar
 tour-service/target
+data/
+explorecali-gateway/
+explorecali-images/
+explorecali-jpa/
