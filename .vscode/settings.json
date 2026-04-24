@@ -20,5 +20,7 @@
   "workbench.colorTheme": "Visual Studio Dark",
   "workbench.fontAliasing": "antialiased",
   "workbench.statusBar.visible": true,
+  "editor.codeLens": true,
+  "java.debug.settings.enableRunDebugCodeLens": true,
   "java.configuration.updateBuildConfiguration": "automatic"
 }
