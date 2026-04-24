@@ -5,3 +5,6 @@ npm-debug.log
 *.class
 *.jar
 tour-service/target
+data/mongo/
+data/mysql/
+target/
