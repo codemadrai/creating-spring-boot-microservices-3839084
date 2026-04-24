@@ -12,6 +12,7 @@
   "editor.smoothScrolling": true,
   "editor.tabSize": 2,
   "editor.useTabStops": true,
+  "editor.codeLens": true,
   "emmet.triggerExpansionOnTab": true,
   "explorer.openEditors.visible": 0,
   "files.autoSave": "afterDelay",
@@ -20,5 +21,6 @@
   "workbench.colorTheme": "Visual Studio Dark",
   "workbench.fontAliasing": "antialiased",
   "workbench.statusBar.visible": true,
-  "java.configuration.updateBuildConfiguration": "disabled"
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "java.debug.settings.enableRunDebugCodeLens": true
 }
