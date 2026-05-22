@@ -1,5 +1,7 @@
 package com.example.explorecalijpa.business;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.stereotype.Service;
 
 import com.example.explorecalijpa.model.Difficulty;
@@ -8,6 +10,8 @@ import com.example.explorecalijpa.model.Tour;
 import com.example.explorecalijpa.model.TourPackage;
 import com.example.explorecalijpa.repo.TourPackageRepository;
 import com.example.explorecalijpa.repo.TourRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class TourService {
@@ -23,12 +27,13 @@ public class TourService {
       String description, String blurb, Integer price, String duration,
       String bullets, String keywords, Difficulty difficulty, Region region) {
 
-    TourPackage tourPackage = null;
-    return new Tour(title, description, blurb,
-        price, duration, bullets, keywords, tourPackage, difficulty, region);
+    TourPackage tourPackage = tourPackageRepository.findById(tourPackageName)
+    .orElseThrow(() -> new EntityNotFoundException("Tour package not found for id" + tourPackageName));
+    return tourRepository.save(new Tour(title, description, blurb,
+        price, duration, bullets, keywords, tourPackage, difficulty, region));
   }
 
   public long total() {
-    return 0;
+    return tourRepository.count();
   }
 }
