@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+import java.util.Map;
 import com.example.explorecalijpa.business.TourRatingService;
+import com.example.explorecalijpa.model.TourRating;
 
 import jakarta.validation.Valid;
 
@@ -41,6 +44,27 @@ public class TourRatingController {
       @RequestBody @Valid RatingDto ratingDto) {
     tourRatingService.createNew(tourId, ratingDto.getCustomerId(), ratingDto.getScore(), ratingDto.getComment());
   }
+
+  /**
+   * Get all ratings for a specific tour
+   * 
+   * @param tourId
+   * @return
+   */
+  @GetMapping
+  public List<RatingDto> getAllRatingsForTour(@PathVariable(value="tourId") int tourId) {
+    List<TourRating> tourRatings = tourRatingService.lookupRatings(tourId); 
+    return tourRatings.stream().map(RatingDto::new).toList(); 
+  }
+
+  /**
+   * Create another new API
+   */
+  @GetMapping("/average")
+  public Map<String, Double> getAverage(@PathVariable(value="tourId") int tourId) {
+    return Map.of("average", tourRatingService.getAverageScore(tourId)); 
+  }
+
 
   @ExceptionHandler(NoSuchElementException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
