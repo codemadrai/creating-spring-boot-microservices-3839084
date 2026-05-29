@@ -2,4 +2,9 @@
 node_modules
 .tmp
 npm-debug.log
-.vscode/launch.json
+*.class
+*.jar
+tour-service/target
+data/mongo/
+data/mysql/
+target/
